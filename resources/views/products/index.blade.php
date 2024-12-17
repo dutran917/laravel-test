@@ -20,6 +20,7 @@
 					<th>ID</th>
 					<th>Tên sản phẩm</th>
 					<th>Giá</th>
+					<th>Số lượng</th>
 					<th>Hành động</th>
 				</tr>
 			</thead>
@@ -29,10 +30,13 @@
 						<td>{{ $product->id }}</td>
 						<td>{{ $product->name }}</td>
 						<td>{{ $product->price }}</td>
+						<td>{{ $product->quantity }}</td>
 						<td>
 							<a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm">Sửa</a>
 							<form action="{{ route('products.destroy', $product->id) }}" method="POST"
 								style="display:inline-block;">
+								<!-- @csrf -->
+								{{ csrf_field() }}
 								<button class="btn btn-danger btn-sm" type="submit">Xóa</button>
 							</form>
 						</td>
@@ -51,6 +55,8 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<form action="{{ route('products.store') }}" method="POST">
+					<!-- @csrf -->
+					{{ csrf_field() }}
 					<div class="modal-body">
 						<div class="mb-3">
 							<label for="name" class="form-label">Tên sản phẩm</label>
@@ -63,6 +69,10 @@
 						<div class="mb-3">
 							<label for="price" class="form-label">Giá</label>
 							<input type="number" class="form-control" id="price" name="price" required>
+						</div>
+						<div class="mb-3">
+							<label for="quantity" class="form-label">Số lượng</label>
+							<input type="number" class="form-control" id="quantity" name="quantity" required>
 						</div>
 					</div>
 					<div class="modal-footer">

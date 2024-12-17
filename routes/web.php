@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Http\Controllers\ProductController;
+// use App\Http\Controllers\ProductController;
+// use App\Http\Controllers\ContactController;
+
 use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
@@ -20,9 +22,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 // Route để hiển thị danh sách sản phẩm
-Route::resource('products', ProductController::class);
-Route::get('/products', 'ProductController@index')->name('products');
+Route::resource('products', 'ProductController');
+// Route::get('/products', 'ProductController@index')->name('products');
 
-// Route để tạo sản phẩm mới (nếu cần)
-// Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-// Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+// Route::resource('contact', ContactController::class);
+// Route::get('/contact', [ContactController::class, 'showForm']);
+// Route::post('/contact', [ContactController::class, 'submitForm']);

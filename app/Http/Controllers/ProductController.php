@@ -33,7 +33,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'description' => $request->description,
             'quantity' => $request->quantity,
-            'user_id' => auth()->id(), // Giả sử mỗi sản phẩm sẽ thuộc về một user
+            'user_id' => auth()->id() ?? 1,  // Giả sử mỗi sản phẩm sẽ thuộc về một user
         ]);
 
         // Điều hướng về trang danh sách sản phẩm
@@ -45,8 +45,14 @@ class ProductController extends Controller
         return view('products.edit', compact('product'));
     }
 
+    public function show(Product $product)
+    {
+        return view('products.show', compact('product'));
+    }
+
     public function update(Request $request, Product $product)
     {
+        dd($request->all());
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
